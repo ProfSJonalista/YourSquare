@@ -200,12 +200,7 @@ namespace YourSquare1.Controllers
 
             return RedirectToAction(nameof(SetPassword));
         }
-
-        //public IActionResult AcceptAdvertisments()
-        //{
-        //    return RedirectToAction("AcceptAdvertisments", "AdvertismentsController");
-        //}
-
+        
         #region Helpers
 
         private void AddErrors(IdentityResult result)
