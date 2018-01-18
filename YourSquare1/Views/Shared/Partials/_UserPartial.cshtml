@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using YourSquare1.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="" asp-controller="Advertisments" asp-action="UserAdvertisments">Moje ogłoszenia</a></li>
+    </ul>
+}
