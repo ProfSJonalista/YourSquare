@@ -30,9 +30,46 @@ namespace YourSquare1.Controllers
         }
 
         // GET: Advertisments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, decimal? minimumPrice, decimal? maximumPrice)
         {
-            return View(await _context.Advertisments.Where(a => a.Accepted == true && a.DecisionMade == true).ToListAsync());
+            ViewData["LocalizationSortParam"] = String.IsNullOrEmpty(sortOrder) ? "location_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["MinimumPrice"] = minimumPrice;
+            ViewData["MaximumPrice"] = maximumPrice;
+
+            var advertisments = from a in _context.Advertisments.Where(a => a.Accepted == true && a.DecisionMade == true) select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                advertisments = advertisments.Where(a => a.Address.Contains(searchString));
+            }
+
+            if (minimumPrice.HasValue && !maximumPrice.HasValue)
+            {
+                advertisments = advertisments.Where(a => minimumPrice.Value <= a.Price);
+            }
+
+            if (maximumPrice.HasValue && !minimumPrice.HasValue)
+            {
+                advertisments = advertisments.Where(a => a.Price <= maximumPrice.Value);
+            }
+
+            if(maximumPrice.HasValue && minimumPrice.HasValue)
+            {
+                advertisments = advertisments.Where(a => minimumPrice.Value <= a.Price && a.Price <= maximumPrice.Value);
+            }
+
+            switch (sortOrder)
+            {
+                case "location_desc":
+                    advertisments = advertisments.OrderByDescending(s => s.Address);
+                    break;
+                default:
+                    advertisments = advertisments.OrderBy(a => a.DateOfPublication);
+                    break;
+            }
+
+            return View(await advertisments.ToListAsync());
         }
 
         public async Task<IActionResult> UserAdvertisments()
@@ -164,7 +201,7 @@ namespace YourSquare1.Controllers
 
                 _context.Add(newAdvertisment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserAdvertisments));
             }
             return View(advertisment);
         }

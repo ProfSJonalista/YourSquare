@@ -1,13 +1,17 @@
 ﻿@using YourSquare1.Views.Manage
 @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
-    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+    var loggedUser = await UserManager.GetUserAsync(User);
 }
 
 <ul class="nav nav-pills nav-stacked">
     <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-action="Index">Profile</a></li>
     <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a asp-action="ChangePassword">Password</a></li>
-    <li class="@ManageNavPages.AcceptAdvertismentsNavClass(ViewContext)"><a asp-controller="Advertisments" 
-                                                                            asp-action="AcceptAdvertisments">Akceptacja ogłoszeń</a></li>
+    @if (loggedUser.Administrator)
+    {
+        <li class="@ManageNavPages.AcceptAdvertismentsNavClass(ViewContext)">
+            <a asp-controller="Advertisments" asp-action="AcceptAdvertisments">Akceptacja ogłoszeń</a>
+        </li>
+    }
 </ul>
-
