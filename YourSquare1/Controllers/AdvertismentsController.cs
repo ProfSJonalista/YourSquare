@@ -54,7 +54,7 @@ namespace YourSquare1.Controllers
                 advertisments = advertisments.Where(a => a.Price <= maximumPrice.Value);
             }
 
-            if(maximumPrice.HasValue && minimumPrice.HasValue)
+            if (maximumPrice.HasValue && minimumPrice.HasValue)
             {
                 advertisments = advertisments.Where(a => minimumPrice.Value <= a.Price && a.Price <= maximumPrice.Value);
             }
@@ -87,23 +87,31 @@ namespace YourSquare1.Controllers
 
         [HttpPost, ActionName("AcceptAdvertisments")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AcceptAdvertismentsPost(string result, int? advertismentId)
+        public async Task<IActionResult> AcceptAdvertismentsPost(int? advertismentId, string result)
         {
             var advertismentToUpdate = await GetDetailAdvertismentAsync(advertismentId);
 
-            if(advertismentToUpdate == null)
+            if (advertismentToUpdate == null)
             {
                 return NotFound();
             }
+            
+            switch (result)
+            {
+                case "accept":
+                    advertismentToUpdate.DecisionMade = true;
+                    advertismentToUpdate.Accepted = true;
+                    break;
 
-            if (result.Equals("accept"))
-            {
-                advertismentToUpdate.DecisionMade = true;
-                advertismentToUpdate.Accepted = true;
-            } else if (result.Equals("decline"))
-            {
-                advertismentToUpdate.DecisionMade = true;
-                advertismentToUpdate.Accepted = false;
+                case "decline":
+                    advertismentToUpdate.DecisionMade = true;
+                    advertismentToUpdate.Accepted = false;
+                    break;
+
+                default:
+                    advertismentToUpdate.DecisionMade = false;
+                    advertismentToUpdate.Accepted = false;
+                    break;
             }
 
             try
