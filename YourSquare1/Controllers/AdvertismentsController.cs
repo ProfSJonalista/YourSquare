@@ -1,20 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using YourSquare1.Models;
-using YourSquare1.Models.AccountViewModels;
-using YourSquare1.Services;
 using YourSquare1.Data;
-using Microsoft.EntityFrameworkCore;
+using YourSquare1.Models;
 
 namespace YourSquare1.Controllers
 {
