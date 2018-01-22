@@ -1,5 +1,4 @@
 ﻿@model YourSquare1.Models.Advertisment
-
 <h2>Details</h2>
 
 <div>
@@ -49,4 +48,16 @@
             @Html.DisplayFor(model => model.Address)
         </dd>
     </dl>
+
+    @{
+        if (Model.AdvertismentImages != null)
+        {
+            foreach (var image in Model.AdvertismentImages)
+            {
+                var base64 = Convert.ToBase64String(image.ImageFile);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                <img src="@imgSrc" />
+            }
+        }
+    }
 </div>

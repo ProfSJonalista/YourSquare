@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using YourSquare1.Data;
@@ -61,7 +63,12 @@ namespace YourSquare1.Controllers
                     break;
             }
 
-            return View(await advertisments.ToListAsync());
+            return View(await advertisments
+                .Include(a => a.AdvertismentCreator)
+                .AsNoTracking()
+                .Include(a => a.AdvertismentImages)
+                .AsNoTracking()
+                .ToListAsync());
         }
 
         public async Task<IActionResult> UserAdvertisments()
@@ -165,6 +172,8 @@ namespace YourSquare1.Controllers
             return await _context.Advertisments
                 .Include(a => a.AdvertismentCreator)
                 .AsNoTracking()
+                .Include(a => a.AdvertismentImages)
+                .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
         }
 
@@ -179,7 +188,7 @@ namespace YourSquare1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Description,AdditionalEquipmentDescription,Price,Address")] Advertisment advertisment)
+        public async Task<IActionResult> Create([Bind("Description,AdditionalEquipmentDescription,Price,Address")] Advertisment advertisment, List<IFormFile> files)
         {
             var advertismentCreator = await _userManager.GetUserAsync(User);
 
@@ -200,6 +209,24 @@ namespace YourSquare1.Controllers
                 newAdvertisment.Address = advertisment.Address;
 
                 _context.Add(newAdvertisment);
+
+                var filePath = Path.GetTempFileName();
+
+                foreach (var formFile in files)
+                {
+                    if(formFile.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await formFile.CopyToAsync(stream);
+                            var image = new Image();
+                            image.Advertisment = newAdvertisment;
+                            image.ImageFile = stream.ToArray();
+
+                            _context.Images.Add(image);
+                        }
+                    }
+                }
                 
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(UserAdvertisments));
@@ -215,7 +242,13 @@ namespace YourSquare1.Controllers
                 return NotFound();
             }
 
-            var advertisment = await _context.Advertisments.SingleOrDefaultAsync(m => m.ID == id);
+            var advertisment = await _context.Advertisments
+                .Include(a => a.AdvertismentCreator)
+                .AsNoTracking()
+                .Include(a => a.AdvertismentImages)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+
             if (advertisment == null)
             {
                 return NotFound();
@@ -228,7 +261,7 @@ namespace YourSquare1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Description,AdditionalEquipmentDescription,Price,Address")] Advertisment advertisment)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,UserID,DateOfPublication,Accepted,DecisionMade,Description,AdditionalEquipmentDescription,Price,Address,AdvertismentCreator,AdvertismentImages")] Advertisment advertisment)
         {
             if (id != advertisment.ID)
             {
@@ -267,7 +300,12 @@ namespace YourSquare1.Controllers
             }
 
             var advertisment = await _context.Advertisments
+                .Include(a => a.AdvertismentCreator)
+                .AsNoTracking()
+                .Include(a => a.AdvertismentImages)
+                .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
+
             if (advertisment == null)
             {
                 return NotFound();
@@ -281,7 +319,12 @@ namespace YourSquare1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var advertisment = await _context.Advertisments.SingleOrDefaultAsync(m => m.ID == id);
+            var advertisment = await _context.Advertisments
+                .Include(a => a.AdvertismentCreator)
+                .AsNoTracking()
+                .Include(a => a.AdvertismentImages)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
             _context.Advertisments.Remove(advertisment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
