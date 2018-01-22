@@ -118,7 +118,9 @@ namespace YourSquare1.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email,
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
                     Email = model.Email,
                     Name = model.Name,
                     Surname = model.Surname,

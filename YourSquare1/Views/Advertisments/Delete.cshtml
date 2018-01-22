@@ -4,66 +4,68 @@
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Jesteś pewien, że chcesz usunąć to ogłoszenie?</h3>
 <div>
-    <h4>Advertisment</h4>
+    <h4>Szczegóły ogłoszenia</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserID)
+            <label>Identyfikator użytkownika</label>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.UserID)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DateOfPublication)
+            <label>Data publikacji</label>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DateOfPublication)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Accepted)
+            <label>Zaakceptowane</label>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Accepted)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DecisionMade)
+            <label>Dodane</label>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DecisionMade)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            <label>Opis</label>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.AdditionalEquipmentDescription)
+            <label>Dod. wyposażenie</label>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.AdditionalEquipmentDescription)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            <label>Cena</label>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+            <label>Adres</label>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Address)
         </dd>
     </dl>
     
+    <div class="form-inline">
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="UserAdvertisments">Back to List</a>
+
+        <input type="submit" value="Usuń" class="btn btn-danger" />
+
     </form>
+    <a asp-area="" asp-controller="Advertisments" asp-action="UserAdvertisments"><button class="btn btn-default btn-back">Powrót</button></a>
+        </div>
 </div>
