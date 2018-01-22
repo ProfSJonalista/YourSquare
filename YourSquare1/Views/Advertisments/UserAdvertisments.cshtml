@@ -4,28 +4,28 @@
     ViewData["Title"] = "UserAdvertisments";
 }
 
-<h2>UserAdvertisments</h2>
+<h2>Twoje ogłoszenia</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create"><button class="btn btn-success">Dodaj nowe ogłoszenie</button></a>
 </p>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Accepted)
+                    Główna
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    Opis
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.AdditionalEquipmentDescription)
+                    Dodatkowe wyposażenie
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Price)
+                    Cena
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Address)
+                    Adres
                 </th>
             <th></th>
         </tr>
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="UserAdvertismentsDetails" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-action="UserAdvertismentsDetails" asp-route-id="@item.ID"><button class="btn btn-default small">Szczegóły</button></a>
+                <a asp-action="Edit" asp-route-id="@item.ID"><button class="btn btn-warning small">Edytuj</button></a>
+                <a asp-action="Delete" asp-route-id="@item.ID"><button class="btn btn-danger small">Usuń</button></a>
             </td>
         </tr>
 }

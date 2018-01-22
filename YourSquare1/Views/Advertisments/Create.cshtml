@@ -4,43 +4,43 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Dodawanie ogłoszenia</h2>
 
-<h4>Advertisment</h4>
+<h4>Wypełnij poniższy formularz</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <label>Opis</label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AdditionalEquipmentDescription" class="control-label"></label>
+                <label>Dodatkowe wyposażenie</label>
                 <input asp-for="AdditionalEquipmentDescription" class="form-control" />
                 <span asp-validation-for="AdditionalEquipmentDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <label>Cena</label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
+                <label>Adres</label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
+
+            <input type="file" name="files" multiple />
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Dodaj" class="btn btn-success" />
+                <a asp-action="Index"><button class="btn btn-default">Powrót</button></a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

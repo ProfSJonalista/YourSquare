@@ -1,6 +1,7 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 20px;
+    background-color: #fafafa;
 }
 
 /* Wrapping element */
@@ -32,4 +33,72 @@
     .carousel-caption {
         display: none;
     }
+}
+.navbar-brand {
+    padding: 0;
+    padding-top: 15px;
+    color: white;
+    margin-right: 20px;
+}
+.form-control {
+    width: 30%;
+}
+.btn-primary {
+    background: #13a57b;
+    border-color: #13a57b;
+}
+    .btn-primary:hover {
+        background: #088f6b;
+        border-color: #088f6b;
+    }
+.details {
+    color: #161616;
+}
+a {
+    color: #088f6b;
+}
+.form-group > .form-control {
+    width: 80%;
+}
+.btn-login {
+    height: 30px;
+    color: #f2f2f2 !important;
+    padding: 10px !important;
+    margin: 10px !important;
+    line-height: 8px !important;
+    line-height: 0;
+}
+.navbar-nav > li > a {
+    line-height: 30px;
+    font-weight: 600;
+}
+.small {
+    padding: 3px 14px;
+}
+.icons {
+    color: #313131;
+    font-size: 18px;
+    top: 5px;
+    margin-left: 10px;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #13a57b;
+}
+a:hover, a:focus {
+    color: #13a57b;
+    text-decoration: underline;
+}
+.btn-back {
+    margin-left: 70px;
+    margin-top: -58px;
+}
+.navbar-inverse .navbar-nav > .hehe > li > a:hover, .navbar-inverse .navbar-nav > .hehe > li > a:focus {
+    color: #fff;
+    background-color: #13a57b;
+    border-bottom-color: #FAFAFA;
+    border-bottom: 4px solid;
+}
+.navbar {
+    border: none;
 }

@@ -1,11 +1,11 @@
 ﻿@model YourSquare1.Models.Advertisment
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegoły ogłoszenia";
 }
 
 @Html.Partial("Partials/DetailsPartial", Model)
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <!--<a asp-action="Edit" asp-route-id="@Model.ID"><input type="submit" class="btn btn-warning" value="Edytuj"/></a>-->
+    <a asp-action=""><input type="submit" class="btn btn-default" value="Powrót" /></a>
 </div>

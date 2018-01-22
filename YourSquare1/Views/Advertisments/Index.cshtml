@@ -4,48 +4,48 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h3>Wyszukiwarka</h3>
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
-        <p>
-            Find by location: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
+        <p class="form-inline">
+            Szukaj po adresie: <input type="text" class="form-control" name="SearchString" placeholder="Adres" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Szukaj po adresie" class="btn btn-primary" />
+            <a asp-action="Index"><input type="submit" value="Wróć do pełnej listy" class="btn btn-default" /></a>
         </p>
     </div>
 </form>
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
-        <p>
-            Find by price: 
-            <br />
-            Minimum:<input type="number" name="minimumPrice" value="@ViewData["MinimumPrice"]" />
-            <br />
-            <br />
-            Maximum:<input type="number" name="maximumPrice" value="@ViewData["MaximumPrice"]" />
-            <br />
-            <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
+        <p class="form-inline">
+            Szukaj po kwocie: 
+            <input type="number" placeholder="Min" name="minimumPrice" class="form-control" value="@ViewData["MinimumPrice"]" />
+            <input type="number" placeholder="Max" name="maximumPrice" class="form-control" value="@ViewData["MaximumPrice"]" />
+            <input type="submit" value="Szukaj w przedziale" class="btn btn-primary" />
+            <a asp-action="Index"><input type="submit" value="Wróć do pełnej listy" class="btn btn-default" /></a>
         </p>
     </div>
 </form>
+
+<hr />
+
+<h2>Tablica ogłoszeń</h2>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Opis
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AdditionalEquipmentDescription)
+                Dodatkowe wyposażenie
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Cena
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocalizationSortParam"]">@Html.DisplayNameFor(model => model.Address)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocalizationSortParam"]"><span style="color: #13a57b;">Adres</span></a>
             </th>
             <th></th>
         </tr>
@@ -67,7 +67,7 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.ID"><input type="submit" value="Szczegóły" class="btn btn-deafult details" /></a>
                 </td>
             </tr>
         }
