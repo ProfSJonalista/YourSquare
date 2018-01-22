@@ -156,7 +156,7 @@ namespace YourSquare1.Controllers
             _logger.LogInformation("User logged out.");
             return RedirectToAction("Index", "Advertisments");
         }
-
+        
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)

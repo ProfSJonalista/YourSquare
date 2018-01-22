@@ -214,7 +214,8 @@ namespace YourSquare1.Controllers
 
                 foreach (var formFile in files)
                 {
-                    if (formFile.Length > 0)
+                    if(formFile.Length > 0)
+
                     {
                         using (var stream = new MemoryStream())
                         {
@@ -227,7 +228,6 @@ namespace YourSquare1.Controllers
                         }
                     }
                 }
-
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(UserAdvertisments));
             }

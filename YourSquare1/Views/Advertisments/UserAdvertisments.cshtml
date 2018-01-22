@@ -49,9 +49,15 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
+
                 <a asp-action="UserAdvertismentsDetails" asp-route-id="@item.ID"><button class="btn btn-default small">Szczegóły</button></a>
+                @if (!item.Accepted && !item.DecisionMade)
+                {
                 <a asp-action="Edit" asp-route-id="@item.ID"><button class="btn btn-warning small">Edytuj</button></a>
+                }
                 <a asp-action="Delete" asp-route-id="@item.ID"><button class="btn btn-danger small">Usuń</button></a>
+
+
             </td>
         </tr>
 }
