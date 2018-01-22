@@ -200,6 +200,7 @@ namespace YourSquare1.Controllers
                 newAdvertisment.Address = advertisment.Address;
 
                 _context.Add(newAdvertisment);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(UserAdvertisments));
             }
