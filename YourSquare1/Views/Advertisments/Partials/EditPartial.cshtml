@@ -1,0 +1,36 @@
+﻿@model YourSquare1.Models.Advertisment
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="UserID" class="form-control" />
+    <input type="hidden" asp-for="DateOfPublication" class="form-control" />
+    <input type="hidden" asp-for="Accepted" />
+    <input type="hidden" asp-for="DecisionMade" />
+    <input type="hidden" asp-for="AdvertismentCreator" />
+    <input type="hidden" asp-for="AdvertismentImages" />
+
+    <div class="form-group">
+        <label>Opis</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Dod. wyposażenie</label>
+        <input asp-for="AdditionalEquipmentDescription" class="form-control" />
+        <span asp-validation-for="AdditionalEquipmentDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Cena</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Adres</label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Zapisz" class="btn btn-primary" />
+    </div>
+</form>

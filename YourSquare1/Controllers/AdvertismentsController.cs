@@ -237,6 +237,16 @@ namespace YourSquare1.Controllers
         // GET: Advertisments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            return await GetEdit(id);
+        }
+
+        public async Task<IActionResult> AcceptAdvertismentEdit(int? id)
+        {
+            return await GetEdit(id);
+        }
+
+        public async Task<IActionResult> GetEdit(int? id)
+        {
             if (id == null)
             {
                 return NotFound();
