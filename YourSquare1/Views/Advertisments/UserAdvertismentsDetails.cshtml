@@ -10,7 +10,7 @@
 <div>
     @if (!Model.Accepted && !Model.DecisionMade)
     {
-        <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> <text>|</text>
+        <a asp-action="Edit" asp-route-id="@Model.ID"><button class="btn btn-warning">Edytuj</button></a>
     }
-    <a asp-action="UserAdvertisments">Back to List</a>
+    <a asp-action="UserAdvertisments"><button class="btn btn-default">Powrót</button></a>
 </div>
