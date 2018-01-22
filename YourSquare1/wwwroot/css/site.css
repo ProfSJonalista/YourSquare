@@ -91,6 +91,10 @@ a:hover, a:focus {
 }
 .btn-back {
     margin-left: 70px;
+    margin-top: 0;
+}
+.btn-back-2 {
+    margin-left: 70px;
     margin-top: -58px;
 }
 .navbar-inverse .navbar-nav > .hehe > li > a:hover, .navbar-inverse .navbar-nav > .hehe > li > a:focus {
