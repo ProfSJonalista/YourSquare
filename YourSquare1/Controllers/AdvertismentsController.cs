@@ -286,7 +286,7 @@ namespace YourSquare1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserAdvertisments));
             }
             return View(advertisment);
         }
@@ -327,7 +327,7 @@ namespace YourSquare1.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             _context.Advertisments.Remove(advertisment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(UserAdvertisments));
         }
 
         private bool AdvertismentExists(int id)
