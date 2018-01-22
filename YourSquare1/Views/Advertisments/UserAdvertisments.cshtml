@@ -49,7 +49,10 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                @if (!item.Accepted && !item.DecisionMade)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> <text>|</text>
+                }
                 <a asp-action="UserAdvertismentsDetails" asp-route-id="@item.ID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
