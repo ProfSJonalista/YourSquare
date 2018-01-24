@@ -57,12 +57,12 @@
 
             if (item.Description.Length > 50)
             {
-                shortDescription = item.Description.Substring(0, 50);
+                shortDescription = item.Description.Substring(0, 50) + " [...]";
             }
 
             if(item.AdditionalEquipmentDescription.Length > 50)
             {
-                shortAdditionalDesc = item.AdditionalEquipmentDescription.Substring(0, 50);
+                shortAdditionalDesc = item.AdditionalEquipmentDescription.Substring(0, 50) + "[...]";
             }
 
             <tr>
