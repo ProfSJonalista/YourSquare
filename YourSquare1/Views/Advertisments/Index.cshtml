@@ -1,7 +1,16 @@
 ﻿@model IEnumerable<YourSquare1.Models.Advertisment>
-
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Index";
+    var user = await UserManager.GetUserAsync(User);
+    var administrator = false;
+    if(user != null)
+    {
+        if (user.Administrator)
+        {
+            administrator = true;
+        }
+    }
 }
 
 <h3>Wyszukiwarka</h3>
@@ -43,12 +52,25 @@
     <tbody>
         @foreach (var item in Model)
         {
+            var shortDescription = item.Description;
+            var shortAdditionalDesc = item.AdditionalEquipmentDescription;
+
+            if (item.Description.Length > 50)
+            {
+                shortDescription = item.Description.Substring(0, 50);
+            }
+
+            if(item.AdditionalEquipmentDescription.Length > 50)
+            {
+                shortAdditionalDesc = item.AdditionalEquipmentDescription.Substring(0, 50);
+            }
+
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => shortDescription)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AdditionalEquipmentDescription)
+                    @Html.DisplayFor(modelItem => shortAdditionalDesc)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
@@ -57,7 +79,12 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ID"><input type="submit" value="Szczegóły" class="btn btn-deafult details" /></a>
+                    <a asp-action="Details" asp-route-id="@item.ID"><button class="btn btn-default small">Szczegóły</button></a>
+                    @if (administrator)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ID"><button class="btn btn-warning small">Edytuj</button></a>
+                        <a asp-action="Delete" asp-route-id="@item.ID"><button class="btn btn-danger small">Usuń</button></a>
+                    }
                 </td>
             </tr>
         }

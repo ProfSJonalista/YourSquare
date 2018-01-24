@@ -81,7 +81,11 @@ namespace YourSquare1.Controllers
 
         public async Task<IActionResult> AcceptAdvertisments()
         {
-            return View(await _context.Advertisments.Where(a => a.Accepted == false && a.DecisionMade == false).ToListAsync());
+            var user = await _userManager.GetUserAsync(User);
+            if (user.Administrator)
+                return View(await _context.Advertisments.Where(a => a.Accepted == false && a.DecisionMade == false).ToListAsync());
+            else
+                return RedirectToAction("Index");
         }
 
         [HttpPost, ActionName("AcceptAdvertisments")]

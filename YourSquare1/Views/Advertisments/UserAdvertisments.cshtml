@@ -1,7 +1,16 @@
 ﻿@model IEnumerable<YourSquare1.Models.Advertisment>
-
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "UserAdvertisments";
+    var user = await UserManager.GetUserAsync(User);
+    var administrator = false;
+    if (user != null)
+    {
+        if (user.Administrator)
+        {
+            administrator = true;
+        }
+    }
 }
 
 <h2>Twoje ogłoszenia</h2>
@@ -12,54 +21,66 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    Główna
-                </th>
-                <th>
-                    Opis
-                </th>
-                <th>
-                    Dodatkowe wyposażenie
-                </th>
-                <th>
-                    Cena
-                </th>
-                <th>
-                    Adres
-                </th>
+            <th>
+                Główna
+            </th>
+            <th>
+                Opis
+            </th>
+            <th>
+                Dodatkowe wyposażenie
+            </th>
+            <th>
+                Cena
+            </th>
+            <th>
+                Adres
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Accepted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdditionalEquipmentDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
 
-                <a asp-action="UserAdvertismentsDetails" asp-route-id="@item.ID"><button class="btn btn-default small">Szczegóły</button></a>
-                @if (!item.Accepted && !item.DecisionMade)
-                {
-                <a asp-action="Edit" asp-route-id="@item.ID"><button class="btn btn-warning small">Edytuj</button></a>
-                }
-                <a asp-action="Delete" asp-route-id="@item.ID"><button class="btn btn-danger small">Usuń</button></a>
+            var shortDescription = item.Description;
+            var shortAdditionalDesc = item.AdditionalEquipmentDescription;
 
+            if (item.Description.Length > 50)
+            {
+                shortDescription = item.Description.Substring(0, 50);
+            }
 
-            </td>
-        </tr>
-}
+            if (item.AdditionalEquipmentDescription.Length > 50)
+            {
+                shortAdditionalDesc = item.AdditionalEquipmentDescription.Substring(0, 50);
+            }
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Accepted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => shortDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => shortAdditionalDesc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <a asp-action="UserAdvertismentsDetails" asp-route-id="@item.ID"><button class="btn btn-default small">Szczegóły</button></a>
+                    @if (!item.Accepted && !item.DecisionMade || administrator)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ID"><button class="btn btn-warning small">Edytuj</button></a>
+                    }
+                    <a asp-action="Delete" asp-route-id="@item.ID"><button class="btn btn-danger small">Usuń</button></a>
+                 </td>
+            </tr>
+        }
     </tbody>
 </table>
