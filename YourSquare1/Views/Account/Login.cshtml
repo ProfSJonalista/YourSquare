@@ -16,7 +16,6 @@
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                 <h4>Zaloguj się na swoje konto</h4>
                 <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label>Email</label>
                     <input asp-for="Email" class="form-control" placeholder="Email"/>
