@@ -8,7 +8,7 @@ namespace YourSquare1.Models.AccountViewModels
 {
     public class ExternalLoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Niepoprawny email")]
         [EmailAddress]
         public string Email { get; set; }
     }

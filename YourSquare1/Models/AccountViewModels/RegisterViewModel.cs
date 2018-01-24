@@ -8,27 +8,27 @@ namespace YourSquare1.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Wypełnij to pole")]
+        [EmailAddress(ErrorMessage = "To nie jest adres email")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Wypełnij to pole")]
         public string PhoneNumber { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Wypełnij to pole")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Wypełnij to pole")]
         public string Surname { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Wypełnij to pole")]
+        [StringLength(100, ErrorMessage = "{0} musi mieć minimum {2} i maksymalnie {1} znaków", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Hasła nie pasują do siebie")]
         public string ConfirmPassword { get; set; }
     }
 }

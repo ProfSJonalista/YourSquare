@@ -9,12 +9,12 @@ namespace YourSquare1.Models.AccountViewModels
     public class LoginWith2faViewModel
     {
         [Required]
-        [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(7, ErrorMessage = "Coś tam {0} musi być {2} blabla {1} lol.", MinimumLength = 6)]
         [DataType(DataType.Text)]
-        [Display(Name = "Authenticator code")]
+        [Display(Name = "Kod autoryzacji")]
         public string TwoFactorCode { get; set; }
 
-        [Display(Name = "Remember this machine")]
+        [Display(Name = "Pamiętaj mnie")]
         public bool RememberMachine { get; set; }
 
         public bool RememberMe { get; set; }
