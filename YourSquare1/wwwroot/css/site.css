@@ -10,7 +10,9 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.container {
+    width: 1400px;
+}
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -96,6 +98,14 @@ a:hover, a:focus {
 .btn-back-2 {
     margin-left: 70px;
     margin-top: -58px;
+}
+.btn-back-3 {
+    margin-left: 706px;
+    margin-top: -78px;
+}
+.btn-back-4 {
+    margin-left: 70px;
+    margin-top: -86px;
 }
 .navbar-inverse .navbar-nav > .hehe > li > a:hover, .navbar-inverse .navbar-nav > .hehe > li > a:focus {
     color: #fff;

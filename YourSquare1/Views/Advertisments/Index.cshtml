@@ -9,24 +9,14 @@
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p class="form-inline">
-            Szukaj po adresie: <input type="text" class="form-control" name="SearchString" placeholder="Adres" value="@ViewData["currentFilter"]" />
-            <input type="submit" value="Szukaj po adresie" class="btn btn-primary" />
-            <a asp-action="Index"><input type="submit" value="Wróć do pełnej listy" class="btn btn-default" /></a>
-        </p>
-    </div>
-</form>
-
-<form asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <p class="form-inline">
-            Szukaj po kwocie: 
-            <input type="number" placeholder="Min" name="minimumPrice" class="form-control" value="@ViewData["MinimumPrice"]" />
-            <input type="number" placeholder="Max" name="maximumPrice" class="form-control" value="@ViewData["MaximumPrice"]" />
+            <input type="number" placeholder="Minimalna cena" name="minimumPrice" class="form-control" value="@ViewData["MinimumPrice"]" />
+            <input type="number" placeholder="Maksymalna cena" name="maximumPrice" class="form-control" value="@ViewData["MaximumPrice"]" />
+            <input type="text" class="form-control" name="SearchString" placeholder="Szukaj po adresie" value="@ViewData["currentFilter"]" />
             <input type="submit" value="Szukaj w przedziale" class="btn btn-primary" />
-            <a asp-action="Index"><input type="submit" value="Wróć do pełnej listy" class="btn btn-default" /></a>
         </p>
     </div>
 </form>
+<a asp-action="Index"><button class="btn btn-default btn-back-3">Wróć do pełnej listy</button></a>
 
 <hr />
 
