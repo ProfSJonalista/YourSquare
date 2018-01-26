@@ -309,8 +309,9 @@ namespace YourSquare1.Controllers
         }
 
         // GET: Advertisments/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, string returnUrl)
         {
+            TempData["returnUrl"] = returnUrl;
             if (id == null)
             {
                 return NotFound();
@@ -344,7 +345,8 @@ namespace YourSquare1.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             _context.Advertisments.Remove(advertisment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(UserAdvertisments));
+            var returnUrl = TempData["returnUrl"];
+            return RedirectToAction(returnUrl.ToString());
         }
 
         private bool AdvertismentExists(int id)
