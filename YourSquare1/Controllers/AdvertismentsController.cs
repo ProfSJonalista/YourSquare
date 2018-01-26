@@ -242,16 +242,6 @@ namespace YourSquare1.Controllers
         public async Task<IActionResult> Edit(int? id, string returnUrl)
         {
             TempData["returnUrl"] = returnUrl;
-            return await GetEdit(id);
-        }
-
-        public async Task<IActionResult> AcceptAdvertismentEdit(int? id)
-        {
-            return await GetEdit(id);
-        }
-
-        public async Task<IActionResult> GetEdit(int? id)
-        {
             if (id == null)
             {
                 return NotFound();
