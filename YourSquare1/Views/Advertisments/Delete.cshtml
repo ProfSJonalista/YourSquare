@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Delete";
+    var returnUrl = TempData["returnUrl"].ToString();
 }
 
 <h3>Jesteś pewien, że chcesz usunąć to ogłoszenie?</h3>
@@ -69,5 +70,5 @@
     
         </div>
     <br />
-    <a asp-area="" asp-controller="Advertisments" asp-action="UserAdvertisments"><button class="btn btn-default">Powrót</button></a>
+    <a asp-area="" asp-controller="Advertisments" asp-action=@returnUrl><button class="btn btn-default">Powrót</button></a>
 </div>

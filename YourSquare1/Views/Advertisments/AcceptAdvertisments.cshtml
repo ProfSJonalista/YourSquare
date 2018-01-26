@@ -71,8 +71,11 @@
                         <input type="hidden" name="returnUrl" value="AcceptAdvertisments" />
                         <button type="submit"><span class="glyphicon glyphicon-pencil icons"/></button>
                     </form>
-                    
-                    <a asp-action="Delete" asp-route-id="@item.ID"><span class="glyphicon glyphicon-trash icons"></span></a>
+                    <form asp-action="Delete" method="get">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <input type="hidden" name="returnUrl" value="AcceptAdvertisments" />
+                        <button type="submit"><span class="glyphicon glyphicon-trash icons"/></button>
+                    </form>
                 </td>
             </tr>
         }

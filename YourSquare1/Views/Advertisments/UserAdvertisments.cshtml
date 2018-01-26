@@ -42,18 +42,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-
             var shortDescription = item.Description;
             var shortAdditionalDesc = item.AdditionalEquipmentDescription;
-
-            if (item.Description.Length > 50)
+            var maxLenght = 30;
+            if (item.Description.Length > maxLenght)
             {
-                shortDescription = item.Description.Substring(0, 50);
+                shortDescription = item.Description.Substring(0, maxLenght) + " [...]";
             }
 
-            if (item.AdditionalEquipmentDescription.Length > 50)
+            if (item.AdditionalEquipmentDescription.Length > maxLenght)
             {
-                shortAdditionalDesc = item.AdditionalEquipmentDescription.Substring(0, 50);
+                shortAdditionalDesc = item.AdditionalEquipmentDescription.Substring(0, maxLenght) + "[...]";
             }
 
             <tr>

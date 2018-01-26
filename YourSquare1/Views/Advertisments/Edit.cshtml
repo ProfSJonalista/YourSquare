@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var returnUrl = TempData["returnUrl"].ToString();
 }
 
 <h2>Edycja ogłoszenia</h2>
@@ -11,7 +12,8 @@
 <div class="row">
     <div class="col-md-4">
         @Html.Partial("Partials/EditPartial", Model)
-        <a asp-action="UserAdvertisments"><button class="btn btn-default">Powrót</button></a>
+        
+        <a asp-action=@returnUrl><button class="btn btn-default">Powrót</button></a>
     </div>
 </div>
 
