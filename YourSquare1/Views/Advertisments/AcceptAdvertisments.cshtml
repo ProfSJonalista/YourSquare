@@ -66,7 +66,12 @@
                         <input type="hidden" name="result" value="decline" />
                         <button type="submit" class="btn btn-danger small">Odrzuć</button>
                     </form>
-                    <a asp-action="AcceptAdvertismentEdit" asp-route-id="@item.ID"><span class="glyphicon glyphicon-pencil icons"></span></a>
+                    <form asp-action="Edit" method="get">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <input type="hidden" name="returnUrl" value="AcceptAdvertisments" />
+                        <button type="submit"><span class="glyphicon glyphicon-pencil icons"/></button>
+                    </form>
+                    
                     <a asp-action="Delete" asp-route-id="@item.ID"><span class="glyphicon glyphicon-trash icons"></span></a>
                 </td>
             </tr>

@@ -76,7 +76,11 @@
                     <a asp-action="UserAdvertismentsDetails" asp-route-id="@item.ID"><button class="btn btn-default small">Szczegóły</button></a>
                     @if (!item.Accepted && !item.DecisionMade || administrator)
                     {
-                        <a asp-action="Edit" asp-route-id="@item.ID"><button class="btn btn-warning small">Edytuj</button></a>
+                        <form asp-action="Edit" method="get">
+                            <input type="hidden" name="id" value="@item.ID" />
+                            <input type="hidden" name="returnUrl" value="UserAdvertisments" />
+                            <button class="btn btn-warning small">Edytuj</button>
+                        </form>
                     }
                     <a asp-action="Delete" asp-route-id="@item.ID"><button class="btn btn-danger small">Usuń</button></a>
                  </td>

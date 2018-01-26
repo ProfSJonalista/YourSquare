@@ -239,8 +239,9 @@ namespace YourSquare1.Controllers
         }
 
         // GET: Advertisments/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, string returnUrl)
         {
+            TempData["returnUrl"] = returnUrl;
             return await GetEdit(id);
         }
 
@@ -273,9 +274,9 @@ namespace YourSquare1.Controllers
         // POST: Advertisments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,UserID,DateOfPublication,Accepted,DecisionMade,Description,AdditionalEquipmentDescription,Price,Address,AdvertismentCreator,AdvertismentImages")] Advertisment advertisment)
+        public async Task<IActionResult> EditPost(int id, [Bind("ID,UserID,DateOfPublication,Accepted,DecisionMade,Description,AdditionalEquipmentDescription,Price,Address,AdvertismentCreator,AdvertismentImages")] Advertisment advertisment)
         {
             if (id != advertisment.ID)
             {
@@ -300,7 +301,9 @@ namespace YourSquare1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(UserAdvertisments));
+
+                var returnUrl = TempData["returnUrl"];
+                return RedirectToAction(returnUrl.ToString());
             }
             return View(advertisment);
         }
