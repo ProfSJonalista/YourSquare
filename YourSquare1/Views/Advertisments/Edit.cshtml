@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
-    var returnUrl = TempData["returnUrl"].ToString();
+    var returnUrl = TempData.Peek("returnUrl").ToString();
 }
 
 <h2>Edycja ogłoszenia</h2>
