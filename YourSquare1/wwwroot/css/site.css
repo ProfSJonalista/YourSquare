@@ -100,8 +100,8 @@ a:hover, a:focus {
     margin-top: -58px;
 }
 .btn-back-3 {
-    margin-left: 706px;
-    margin-top: -78px;
+    margin-left: 770px;
+    margin-top: -75px;
 }
 .btn-back-4 {
     margin-left: 70px;
@@ -119,4 +119,7 @@ a:hover, a:focus {
 .text-danger {
     color: #d9534f;
     font-weight: 600;
+}
+.tiny {
+    margin-left: 100px;
 }

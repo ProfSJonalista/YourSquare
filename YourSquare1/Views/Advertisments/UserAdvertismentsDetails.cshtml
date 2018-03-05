@@ -10,7 +10,11 @@
 <div>
     @if (!Model.Accepted && !Model.DecisionMade)
     {
-        <a asp-action="Edit" asp-route-id="@Model.ID"><button class="btn btn-warning">Edytuj</button></a>
+        <form asp-action="Edit" method="get">
+            <button class="btn btn-warning small">Edytuj</button>
+            <input type="hidden" name="id" value="@Model.ID" class="tiny" />
+            <input type="hidden" name="returnUrl" value="UserAdvertisments" class="tiny" />
+        </form>
     }
     <a asp-action="UserAdvertisments"><button class="btn btn-default">Powrót</button></a>
 </div>

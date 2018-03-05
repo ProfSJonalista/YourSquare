@@ -2,63 +2,15 @@
 
 @{
     ViewData["Title"] = "Delete";
-    var returnUrl = TempData["returnUrl"].ToString();
+    var returnUrl = TempData.Peek("returnUrl").ToString();
 }
 
 <h3>Jesteś pewien, że chcesz usunąć to ogłoszenie?</h3>
 <div>
     <h4>Szczegóły ogłoszenia</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label>Identyfikator użytkownika</label>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>
-        <dt>
-            <label>Data publikacji</label>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DateOfPublication)
-        </dd>
-        <dt>
-            <label>Zaakceptowane</label>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Accepted)
-        </dd>
-        <dt>
-            <label>Dodane</label>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DecisionMade)
-        </dd>
-        <dt>
-            <label>Opis</label>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            <label>Dod. wyposażenie</label>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdditionalEquipmentDescription)
-        </dd>
-        <dt>
-            <label>Cena</label>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt>
-            <label>Adres</label>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-    </dl>
+    
+    @Html.Partial("Partials/DetailsPartial", Model)
     
     <div class="form-inline">
     <form asp-action="Delete">

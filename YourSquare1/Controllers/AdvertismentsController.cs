@@ -242,6 +242,17 @@ namespace YourSquare1.Controllers
         public async Task<IActionResult> Edit(int? id, string returnUrl)
         {
             TempData["returnUrl"] = returnUrl;
+            TempData.Keep("returnUrl");
+            return await GetEdit(id);
+        }
+
+        public async Task<IActionResult> AcceptAdvertismentEdit(int? id)
+        {
+            return await GetEdit(id);
+        }
+
+        public async Task<IActionResult> GetEdit(int? id)
+        {
             if (id == null)
             {
                 return NotFound();
@@ -292,7 +303,7 @@ namespace YourSquare1.Controllers
                     }
                 }
 
-                var returnUrl = TempData["returnUrl"];
+                var returnUrl = TempData.Peek("returnUrl");
                 return RedirectToAction(returnUrl.ToString());
             }
             return View(advertisment);
@@ -302,6 +313,7 @@ namespace YourSquare1.Controllers
         public async Task<IActionResult> Delete(int? id, string returnUrl)
         {
             TempData["returnUrl"] = returnUrl;
+            TempData.Keep("returnUrl");
             if (id == null)
             {
                 return NotFound();
@@ -335,7 +347,7 @@ namespace YourSquare1.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             _context.Advertisments.Remove(advertisment);
             await _context.SaveChangesAsync();
-            var returnUrl = TempData["returnUrl"];
+            var returnUrl = TempData.Peek("returnUrl");
             return RedirectToAction(returnUrl.ToString());
         }
 
